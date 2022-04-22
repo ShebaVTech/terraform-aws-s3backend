@@ -1,9 +1,9 @@
 data "aws_caller_identity" "current" {}
 locals {
-principal_arns = var.principal_arns != null ? var.principal_arns :
-[data.aws_caller_identity.current.arn] #If no principal ARNs are specified,
+  principal_arns = var.principal_arns != null ? var.principal_arns : [data.aws_caller_identity.current.arn]
+} #If no principal ARNs are specified,
 # uses the current account
-}
+
 resource "aws_iam_role" "iam_role" {
 name = "${local.namespace}-tf-assume-role"
 assume_role_policy = <<-EOF
